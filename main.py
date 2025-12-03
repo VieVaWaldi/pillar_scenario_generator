@@ -5,6 +5,8 @@ from sklearn.metrics import r2_score, mean_squared_error
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+images = "visualizations/"
+
 
 # Parse the CSV with European number format (comma as decimal, semicolon as separator)
 def parse_data(filepath):
@@ -45,7 +47,7 @@ def parse_data(filepath):
 print("=" * 60)
 print("LOADING DATA")
 print("=" * 60)
-df = parse_data("data.csv")
+df = parse_data("data/data.csv")
 print("\nParsed DataFrame:")
 print(df.to_string())
 print(f"\nShape: {df.shape}")
@@ -150,7 +152,7 @@ cbar = fig.colorbar(scatter, cax=cbar_ax)
 cbar.set_label("Distance", fontsize=10)
 
 plt.tight_layout(rect=[0, 0, 0.9, 0.95])
-plt.savefig("3d_visualizations.png", dpi=150, bbox_inches="tight")
+plt.savefig(f"{images}3d_visualizations.png", dpi=150, bbox_inches="tight")
 print("\nSaved: 3d_visualizations.png")
 
 # Also create individual larger plots for better detail
@@ -183,7 +185,7 @@ for ax, (x_col, y_col, z_col) in zip(axes.flat, key_pairs):
     ax.set_title(f"X={x_col}, Y={y_col}, Z={z_col}", fontsize=11)
 
 plt.tight_layout()
-plt.savefig("3d_detailed.png", dpi=150, bbox_inches="tight")
+plt.savefig(f"{images}3d_detailed.png", dpi=150, bbox_inches="tight")
 print("Saved: 3d_detailed.png")
 
 # Regression summary plot
@@ -226,7 +228,7 @@ for ax, feature in zip(axes3.flat, feature_names):
     ax.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("regression_plots.png", dpi=150, bbox_inches="tight")
+plt.savefig(f"{images}regression_plots.png", dpi=150, bbox_inches="tight")
 print("Saved: regression_plots.png")
 
 print("\n" + "=" * 60)
